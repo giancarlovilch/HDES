@@ -1,0 +1,19 @@
+{% extends 'schedule/base.html' %}
+
+{% block content %}
+<div class="worker-form">
+    <h2>{% if object %}Editar{% else %}Crear{% endif %} Trabajador</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_name">Nombre:</label>
+            {{ form.name }}
+        </div>
+        <div class="form-submit-btn">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="{% url 'schedule:worker_list' %}" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

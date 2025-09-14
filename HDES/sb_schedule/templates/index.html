@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio - SB Schedule{% endblock %}
+
+{% block content %}
+  <div class="text-center">
+      <h1>Bienvenido a SB Schedule</h1>
+      <p class="lead">Gestiona la asignación de asientos para tus trabajadores.</p>
+
+      <!-- Botón destacado -->
+      <a href="{% url 'schedule:seat_list' %}" class="btn btn-primary btn-lg mt-3">
+          Ir a Asignar Asientos
+      </a>
+  </div>
+{% endblock %}
+<!-- sb_schedule/template/index.html -->
