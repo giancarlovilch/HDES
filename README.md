@@ -25,29 +25,6 @@ pip install -r requirements.txt
 python manage.py runserver
 ```
 
-```
-python manage.py makemigrations schedule
-python manage.py migrate
-```
-
-```
-pip install django-extensions pydotplus
-python manage.py graph_models -a -o models.png
-python manage.py inspectdb
-
-```
-
-```
-python manage.py changepassword admin
-python manage.py createsuperuser
-
-```
-
-```
-deactivate
-
-```
-
 
 
 
