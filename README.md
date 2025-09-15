@@ -23,6 +23,8 @@ cd sb_schedule
 pip freeze > requirements.txt
 pip install -r requirements.txt
 python manage.py runserver
+python manage.py makemigrations schedule
+python manage.py migrate
 ```
 
 

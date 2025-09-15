@@ -19,16 +19,15 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
-from . import views  # Importa todas las vistas del proyecto principal
+from . import views  
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),  # Página principal
+    path('', views.index, name='index'),  
     path('schedule/', include('schedule.urls', namespace='schedule')),
 ]
 
-# Solo en modo desarrollo: servir archivos estáticos y media
+
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    # Si también tienes archivos de medios (uploads), añade esta línea:
-    # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    
