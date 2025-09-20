@@ -1,52 +1,153 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <title>{% block title %}SB Schedule{% endblock %}</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Intranet Cadena de Boticas{% endblock %}</title>
 
-    <!-- Bootstrap CDN (v5.3) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-          rel="stylesheet" integrity="sha384-..." crossorigin="anonymous">
+  <!-- Cargar archivos estáticos -->
+  {% load static %}
 
-    {% block extra_css %}{% endblock %}
+  <!-- Bootstrap CDN (v5.3) con íconos -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <!-- Íconos -->
+  <link rel="stylesheet" href="{% static 'css/dashboard.css' %}"> <!-- Ajusté la ruta; asegúrate de que coincida -->
+
+  {% block extra_css %}{% endblock %}
 </head>
+
 <body>
+  <!-- ======== NAVBAR ========= -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="{% url 'index' %}">
+        <i class="bi bi-shop"></i> INTRANET
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-<!-- ======== NAVBAR ========= -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'index' %}">SB Horario</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-            aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto"> <!-- me-auto para alinear a la izquierda -->
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'index' %}">
+              <i class="bi bi-house-door"></i> Dashboard
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-box-seam"></i> Inventario
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'inventory:list' %}">Ver Stock</a></li>
+              <li><a class="dropdown-item" href="{% url 'inventory:add' %}">Agregar Producto</a></li>
+              <li><a class="dropdown-item" href="{% url 'inventory:manage' %}">Gestionar Categorías</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-calendar-event"></i> Horarios
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'schedule:seat_list' %}">Ver Asignaciones</a></li>
+              <li><a class="dropdown-item" href="{% url 'schedule:worker_list' %}">Gestionar Trabajadores</a></li>
+              <li><a class="dropdown-item" href="{% url 'schedule:reset_assignments' %}">Reiniciar Asignaciones</a></li>
+              <!-- Usando el require_POST, pero para display, quizás redirige -->
+            </ul>
+          </li>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">  <!-- ms-auto: margin start auto (right-aligned) -->
-        <li class="nav-item"><a class="nav-link" href="{% url 'schedule:seat_list' %}">Asignar Asientos</a></li>
-        {% comment %}
-          Aquí puedes añadir más enlaces cuando vayas a crear otras vistas.
-        {% endcomment %}
-      </ul>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-cash-stack"></i> Ventas
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'sales:register' %}">Registrar Venta</a></li>
+              <li><a class="dropdown-item" href="{% url 'sales:reports' %}">Reportes de Ventas</a></li>
+              <li><a class="dropdown-item" href="{% url 'sales:history' %}">Historial</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-people"></i> Empleados
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'employees:list' %}">Lista de Empleados</a></li>
+              <li><a class="dropdown-item" href="{% url 'employees:add' %}">Agregar Empleado</a></li>
+              <li><a class="dropdown-item" href="{% url 'schedule:seat_list' %}">Asignar Horarios</a></li>
+              <!-- Mantuve el original -->
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'reports:main' %}">
+              <i class="bi bi-graph-up"></i> Reportes
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'suppliers:list' %}">
+              <i class="bi bi-truck"></i> Proveedores
+            </a>
+          </li>
+        </ul>
+        <!-- Usuario y logout a la derecha -->
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'accounts:profile' %}">Perfil</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Sesión</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<!-- ======== MAIN CONTENT ========= -->
-<div class="container">
+  <!-- ======== MAIN CONTENT ========= -->
+  <div class="container my-4">
     {% block content %}{% endblock %}
-</div>
-
-<!-- ======== FOOTER ========= -->
-<footer class="bg-dark text-white mt-5 py-3">
-  <div class="container text-center">
-      © {{ year }} SB Horario – Todos los derechos reservados.
   </div>
-</footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-..." crossorigin="anonymous"></script>
-{% block extra_js %}{% endblock %}
+  <!-- ======== FOOTER ========= -->
+  <footer class="bg-dark text-white mt-auto py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h5>CONSTRUCTORA E INMOBILIARIA</h5>
+          <p>Intranet para gestión completa de operaciones.</p>
+        </div>
+        <div class="col-md-4">
+          <h5>Contacto</h5>
+          <p>Email: soporte@mail.com<br>Teléfono: (01) 123-4567</p>
+        </div>
+        <div class="col-md-4">
+          <h5>Enlaces Legales</h5>
+          <ul class="list-unstyled">
+            <li><a href="{% url 'legal:privacy' %}" class="text-white">Política de Privacidad</a></li>
+            <li><a href="{% url 'legal:terms' %}" class="text-white">Términos de Servicio</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+      <div class="text-center">
+        <p>&copy; {{ year|default:"2023" }} Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+  {% block extra_js %}{% endblock %}
 </body>
+
 </html>

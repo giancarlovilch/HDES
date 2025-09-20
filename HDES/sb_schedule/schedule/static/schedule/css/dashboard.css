@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap'); /* Fuente moderna */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Para que el footer esté al final */
+}
+
+.navbar-brand {
+  font-weight: 700;
+}
+
+.navbar-nav .nav-link {
+  font-weight: 500;
+}
+
+.navbar-nav .dropdown-menu .dropdown-item {
+  font-size: 0.9rem;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+/* Footer profesional */
+footer {
+  margin-top: auto;
+  background-color: #343a40 !important;
+}
+
+footer h5 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+footer p, footer a {
+  font-size: 0.9rem;
+}
+
+/* Cards en dashboard */
+.card {
+  margin-bottom: 1rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  transition: transform 0.2s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .navbar-brand {
+    font-size: 1rem;
+  }
+  .display-4 {
+    font-size: 2rem;
+  }
+  .btn-lg {
+    font-size: 1rem;
+  }
+}
