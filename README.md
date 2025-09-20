@@ -78,7 +78,7 @@ cd HDES
 
 ```
 python -m venv venv
-source venv/bin/activate  # En Windows: venv\Scripts\activate
+source venv/bin/activate  # En Windows: .\Scripts\activate.bat
 ```
 
 **Instala Dependencias**:
