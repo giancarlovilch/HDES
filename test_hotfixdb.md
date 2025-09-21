@@ -1,39 +1,40 @@
-## 🗄️ Base de Datos
+## 🗄️ Base de Datos en Django (SQLite)
 
-El sistema está respaldado por una **base de datos MySQL**, diseñada bajo el patrón **MVC** para mantener los datos organizados, seguros y accesibles.
+El sistema utiliza la base de datos **SQLite** por defecto de Django.  
+Todos los modelos están gestionados mediante **Django ORM**, lo que facilita migraciones, integridad de datos y seguridad sin necesidad de escribir SQL directamente.
 
-------
+---
 
-### 📋 Tablas principales
+### 📋 Modelos principales
 
-1. **usuarios**
-   - id_usuario (PK, autoincremental)
-   - nombre_completo (VARCHAR)
-   - username (VARCHAR, único)
-   - password (VARCHAR, encriptada con hash)
-   - rol (ENUM: 'admin', 'empleado', 'gerente')
-   - fecha_registro (TIMESTAMP)
+1. **Usuario**  
+   - id (PK, autoincremental – creado automáticamente por Django)  
+   - nombre_completo (CharField)  
+   - username (CharField, único)  
+   - password (CharField → almacenada con hash)  
+   - rol (choices: 'admin', 'empleado', 'gerente')  
+   - fecha_registro (DateTimeField, auto_now_add=True)  
 
-2. **productos**
-   - id_producto (PK)
-   - nombre_producto (VARCHAR)
-   - precio (DECIMAL)
-   - stock (INT)
-   - categoria (VARCHAR)
+2. **Producto**  
+   - id (PK)  
+   - nombre_producto (CharField)  
+   - precio (DecimalField)  
+   - stock (IntegerField)  
+   - categoria (CharField)  
 
-3. **ventas**
-   - id_venta (PK)
-   - id_usuario (FK → usuarios)
-   - id_producto (FK → productos)
-   - cantidad (INT)
-   - fecha_venta (TIMESTAMP)
+3. **Venta**  
+   - id (PK)  
+   - usuario (ForeignKey → Usuario)  
+   - producto (ForeignKey → Producto)  
+   - cantidad (IntegerField)  
+   - fecha_venta (DateTimeField, auto_now_add=True)  
 
-4. **arqueo_caja**
-   - id_arqueo (PK)
-   - id_usuario (FK → usuarios)
-   - monto_inicial (DECIMAL)
-   - monto_final (DECIMAL)
-   - fecha (DATE)
+4. **ArqueoCaja**  
+   - id (PK)  
+   - usuario (ForeignKey → Usuario)  
+   - monto_inicial (DecimalField)  
+   - monto_final (DecimalField)  
+   - fecha (DateField)  
 
 ---
 
@@ -41,57 +42,49 @@ El sistema está respaldado por una **base de datos MySQL**, diseñada bajo el p
 
 ```mermaid
 erDiagram
-    USUARIOS {
-        int id_usuario PK
+    USUARIO {
+        int id PK
         string nombre_completo
         string username
         string password
         string rol
-        timestamp fecha_registro
+        datetime fecha_registro
     }
 
-    PRODUCTOS {
-        int id_producto PK
+    PRODUCTO {
+        int id PK
         string nombre_producto
         decimal precio
         int stock
         string categoria
     }
 
-    VENTAS {
-        int id_venta PK
-        int id_usuario FK
-        int id_producto FK
+    VENTA {
+        int id PK
+        int usuario_id FK
+        int producto_id FK
         int cantidad
-        timestamp fecha_venta
+        datetime fecha_venta
     }
 
     ARQUEO_CAJA {
-        int id_arqueo PK
-        int id_usuario FK
+        int id PK
+        int usuario_id FK
         decimal monto_inicial
         decimal monto_final
         date fecha
     }
 
-    USUARIOS ||--o{ VENTAS : "realiza"
-    PRODUCTOS ||--o{ VENTAS : "se venden"
-    USUARIOS ||--o{ ARQUEO_CAJA : "controla"
+    USUARIO ||--o{ VENTA : "realiza"
+    PRODUCTO ||--o{ VENTA : "se venden"
+    USUARIO ||--o{ ARQUEO_CAJA : "controla"
 ```
 
 ------
 
-### 🔐 Seguridad en la BD
+### 🔐 Seguridad en la BD con Django
 
-- Contraseñas guardadas con **hash (SHA-256/BCrypt)**.
-- Usuarios identificados por **username único** (no correo).
-- Logs de auditoría para controlar actividades sensibles.
-- Restricciones de **FK** para mantener integridad referencial.
-
-------
-
-### 🚀 Próximos pasos en la BD
-
-- Agregar tabla de **asistencias** para el control de personal.
-- Implementar **backups automáticos.
-- Optimizar con **índices** en campos más usados (username, fecha_venta).
+- **Contraseñas**: manejadas por el sistema de autenticación de Django (hash seguro con `PBKDF2` por defecto, se puede usar BCrypt o Argon2).
+- **Integridad**: relaciones y restricciones automáticas con `ForeignKey`.
+- **Migraciones**: cualquier cambio en los modelos se gestiona con `python manage.py makemigrations` y `migrate`.
+- **Auditoría**: posibilidad de usar señales (`signals`) para registrar logs de cambios y acciones de usuarios.

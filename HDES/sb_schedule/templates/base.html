@@ -1,20 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}Intranet Cadena de Boticas{% endblock %}</title>
-
-  <!-- Cargar archivos estáticos -->
   {% load static %}
-
-  <!-- Bootstrap CDN (v5.3) con íconos -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-  <!-- Íconos -->
-  <link rel="stylesheet" href="{% static 'css/dashboard.css' %}"> <!-- Ajusté la ruta; asegúrate de que coincida -->
+  <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
 
   {% block extra_css %}{% endblock %}
 </head>
@@ -30,9 +24,8 @@
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav me-auto"> <!-- me-auto para alinear a la izquierda -->
+        <ul class="navbar-nav me-auto">
           <li class="nav-item">
             <a class="nav-link" href="{% url 'index' %}">
               <i class="bi bi-house-door"></i> Dashboard
@@ -48,18 +41,6 @@
               <li><a class="dropdown-item" href="{% url 'inventory:manage' %}">Gestionar Categorías</a></li>
             </ul>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="bi bi-calendar-event"></i> Horarios
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{% url 'schedule:seat_list' %}">Ver Asignaciones</a></li>
-              <li><a class="dropdown-item" href="{% url 'schedule:worker_list' %}">Gestionar Trabajadores</a></li>
-              <li><a class="dropdown-item" href="{% url 'schedule:reset_assignments' %}">Reiniciar Asignaciones</a></li>
-              <!-- Usando el require_POST, pero para display, quizás redirige -->
-            </ul>
-          </li>
-
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="bi bi-cash-stack"></i> Ventas
@@ -78,7 +59,6 @@
               <li><a class="dropdown-item" href="{% url 'employees:list' %}">Lista de Empleados</a></li>
               <li><a class="dropdown-item" href="{% url 'employees:add' %}">Agregar Empleado</a></li>
               <li><a class="dropdown-item" href="{% url 'schedule:seat_list' %}">Asignar Horarios</a></li>
-              <!-- Mantuve el original -->
             </ul>
           </li>
           <li class="nav-item">
@@ -91,12 +71,20 @@
               <i class="bi bi-truck"></i> Proveedores
             </a>
           </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-calendar-event"></i> Horarios
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'schedule:seat_list' %}">Ver Asignaciones</a></li>
+              <li><a class="dropdown-item" href="{% url 'schedule:worker_list' %}">Gestionar Trabajadores</a></li>
+            </ul>
+          </li>
         </ul>
-        <!-- Usuario y logout a la derecha -->
         <ul class="navbar-nav">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              
+
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="{% url 'accounts:profile' %}">Perfil</a></li>
@@ -110,8 +98,6 @@
       </div>
     </div>
   </nav>
-
-  <!-- ======== MAIN CONTENT ========= -->
   <div class="container my-4">
     {% block content %}{% endblock %}
   </div>
@@ -121,7 +107,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-4">
-          <h5>CONSTRUCTORA E INMOBILIARIA</h5>
+          <h5>SB INTRANET</h5>
           <p>Intranet para gestión completa de operaciones.</p>
         </div>
         <div class="col-md-4">

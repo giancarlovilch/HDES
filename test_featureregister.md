@@ -51,10 +51,3 @@ flowchart TD
     C --> E[Usuario redirigido al Login]
 ```
 
-------
-
-### 🚀 Próximos Pasos
-
-- Implementar **verificación por correo electrónico** tras el registro.
-- Permitir que solo **administradores** puedan asignar ciertos roles.
-- Registro de **logs de creación de usuarios** para control interno.

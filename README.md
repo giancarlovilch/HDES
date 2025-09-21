@@ -13,16 +13,7 @@ Bienvenido a SB Intranet, el sistema de intranet desarrollado en Django para ges
 ---
 
 ## 📋 Índice
-- [Introducción](#introducción)
-- [Objetivos](#objetivos)
-- [Tecnologías y Desarrollo](#tecnologías-y-desarrollo)
-- [Instalación](#instalación)
-- [Uso](#uso)
-- [Flujo de Git (Gitflow)](#flujo-de-git-gitflow)
-- [Documentación](#documentación)
-- [Planes Futuros](#planes-futuros)
-- [Contribuciones](#contribuciones)
-- [Licencia](#licencia)
+[TOC]
 
 ---
 
@@ -104,7 +95,7 @@ Ve a `http://127.0.0.1:8000/` en tu navegador.
 
 ------
 
-## 💻 Uso
+## Uso
 
 - **Acceso**: Regístrate o inicia sesión si configuraste autenticación.
 - **Navegación**: Usa el navbar para acceder a módulos (Inventario, Ventas, Horarios, etc.).
@@ -115,7 +106,7 @@ Ejemplo: Para gestionar inventarios, ve a `Inventario > Ver Stock` y añade prod
 
 ------
 
-## 🌊Flujo de Git (Gitflow)
+## Flujo de Git (Gitflow)
 
 Usamos el modelo Gitflow para un desarrollo organizado. Aquí el diagrama:
 
@@ -125,10 +116,10 @@ graph TD
     B[develop] -->|Versión Completa| A
     C[feature/login] -->|Funcionalidad Lista| B
     D[feature/register] -->|Funcionalidad Lista| B
-    E[hotfix/db] -->|Fix Urgente| A    
+    E[hotfix/db] -->|Funcionalidad Lista| B    
     B -->|Merge| C
     B -->|Merge| D
-    A -->|Branch| E   
+    B -->|Merge| E   
 ```
 
 ```
@@ -146,6 +137,8 @@ git push origin main:feature/register --force
 git push origin main:hotfix/db --force
 ```
 
+------
+
 ### Explicación de Ramas
 
 - **main**: Rama estable. Puerta a producción. Solo merges desde `develop` o `hotfix`.
@@ -160,14 +153,11 @@ git checkout -b feature/nueva-funcionalidad  # Crear rama
 git add .
 git commit -m "Descripción"
 git push origin feature/nueva-funcionalidad
-
-git checkout feature/login
-git 
 ```
 
 ------
 
-### 📚 Documentación
+## 📚 Documentación
 
 Para más detalles técnicos:
 

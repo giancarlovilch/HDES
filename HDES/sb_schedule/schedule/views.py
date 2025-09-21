@@ -8,7 +8,6 @@ from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 from .models import Day, Seat, Worker
 
-# Vista principal de asignaciones
 class SeatListView(View):
     def get(self, request):
         days = Day.objects.prefetch_related('seats__worker').all().order_by('id')
@@ -48,7 +47,6 @@ class SeatListView(View):
 
         return redirect('schedule:seat_list')
 
-# Vistas CRUD para trabajadores
 class WorkerListView(ListView):
     model = Worker
     template_name = 'schedule/worker_list.html'

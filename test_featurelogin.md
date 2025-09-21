@@ -43,10 +43,3 @@ flowchart TD
     D --> A
 ```
 
-------
-
-### 🚀 Próximos Pasos
-
-- Implementar **recuperación de contraseñas por correo**.
-- Integrar **2FA (autenticación de dos factores)**.
-- Registro de **logs de accesos** para auditoría.
