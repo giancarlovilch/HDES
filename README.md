@@ -133,6 +133,18 @@ graph TD
     A -->|Branch| F
 ```
 
+```
+git branch -r
+ origin/HEAD -> origin/main
+  origin/develop
+  origin/feature/login
+  origin/feature/register
+  origin/hotfix/db
+  origin/main
+```
+
+
+
 ### Explicación de Ramas
 
 - **main**: Rama estable. Puerta a producción. Solo merges desde `develop` o `hotfix`.
