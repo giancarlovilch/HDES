@@ -1,6 +1,6 @@
 # 🏥 Intranet Cadena de Boticas (HDES)
 
-Bienvenido a SB Intranet, el sistema de intranet desarrollado en Django para gestionar operaciones diarias en una cadena de boticas (farmacias). Este proyecto centraliza módulos clave como inventarios, ventas, reportes, horarios de empleados, proveedores y cuentas, facilitando una administración eficiente y segura desde un solo punto.
+Bienvenido a SB Intranet, el sistema de intranet desarrollado en Django para gestionar operaciones diarias en una cadena de boticas. Este proyecto centraliza módulos clave como inventarios, ventas, reportes, horarios de empleados, proveedores y cuentas, facilitando una administración eficiente y segura desde un solo punto.
 
 [![Django](https://img.shields.io/badge/Django-4.2-green.svg)](https://www.djangoproject.com/)  
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)  
@@ -13,6 +13,18 @@ Bienvenido a SB Intranet, el sistema de intranet desarrollado en Django para ges
 ---
 
 ## 📋 Índice
+
+- [Introducción](#introducción)
+- [Objetivos](#objetivos)
+- [Tecnologías y Desarrollo](#tecnologías-y-desarrollo)
+- [Instalación](#instalación)
+- [Uso](#uso)
+- [Flujo de Git (Gitflow)](#flujo-de-git-gitflow)
+- [Documentación](#documentación)
+- [Planes Futuros](#planes-futuros)
+- [Contribuciones](#contribuciones)
+- [Licencia](#licencia)
+
 [TOC]
 
 ---
@@ -135,6 +147,28 @@ git push origin main:develop --force
 git push origin main:feature/login --force
 git push origin main:feature/register --force
 git push origin main:hotfix/db --force
+```
+
+------
+
+### 🧩 Relación con otros branches
+
+```mermaid
+gitGraph
+   commit id: "Inicio"
+   branch develop
+   commit id: "Base develop"
+   branch feature/login
+   commit id: "Login listo"
+   checkout develop
+   merge feature/login
+   branch feature/register
+   commit id: "Registro listo"
+   checkout develop
+   merge feature/register
+   checkout main
+   merge develop
+   commit id: "Release estable"
 ```
 
 ------
