@@ -146,8 +146,6 @@ git push origin main:feature/register --force
 git push origin main:hotfix/db --force
 ```
 
-
-
 ### Explicación de Ramas
 
 - **main**: Rama estable. Puerta a producción. Solo merges desde `develop` o `hotfix`.
@@ -162,11 +160,14 @@ git checkout -b feature/nueva-funcionalidad  # Crear rama
 git add .
 git commit -m "Descripción"
 git push origin feature/nueva-funcionalidad
+
+git checkout feature/login
+git 
 ```
 
 ------
 
-## 📚 Documentación
+### 📚 Documentación
 
 Para más detalles técnicos:
 
