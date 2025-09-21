@@ -125,12 +125,10 @@ graph TD
     B[develop] -->|Versión Completa| A
     C[feature/login] -->|Funcionalidad Lista| B
     D[feature/register] -->|Funcionalidad Lista| B
-    E[hotfix/db] -->|Fix Urgente| A
-    F[hotfix/igv-calculation] -->|Fix Urgente| A
+    E[hotfix/db] -->|Fix Urgente| A    
     B -->|Merge| C
     B -->|Merge| D
-    A -->|Branch| E
-    A -->|Branch| F
+    A -->|Branch| E   
 ```
 
 ```
@@ -141,6 +139,11 @@ git branch -r
   origin/feature/register
   origin/hotfix/db
   origin/main
+ 
+git push origin main:develop --force
+git push origin main:feature/login --force
+git push origin main:feature/register --force
+git push origin main:hotfix/db --force
 ```
 
 
