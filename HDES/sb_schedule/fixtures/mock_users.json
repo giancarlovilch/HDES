@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "username": "jlopez",
+    "nombre": "Juan Lopez",
+    "rol": "Empleado",
+    "skills": ["Caja", "Ventas"]
+  },
+  {
+    "id": 2,
+    "username": "mperez",
+    "nombre": "Maria Perez",
+    "rol": "Gerente",
+    "skills": ["Almacén", "Reportes"]
+  }
+]
