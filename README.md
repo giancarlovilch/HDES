@@ -1,14 +1,10 @@
-# 🏥 Intranet Cadena de Boticas (HDES)
+# 🏥 Intranet de Gestión Empresarial - HDES
 
-Bienvenido a SB Intranet, el sistema de intranet desarrollado en Django para gestionar operaciones diarias en una cadena de boticas. Este proyecto centraliza módulos clave como inventarios, ventas, reportes, horarios de empleados, proveedores y cuentas, facilitando una administración eficiente y segura desde un solo punto.
+Este proyecto es la **evolución de la intranet** para una cadena de boticas.  
+Mientras que el software existente en **PHP** ya cubre **ventas e inventario**,  
+este nuevo sistema en **Django** se centra en la **gestión integral del personal** y la **administración organizacional**.
 
-[![Django](https://img.shields.io/badge/Django-4.2-green.svg)](https://www.djangoproject.com/)  
-[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)  
-[![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-purple.svg)](https://getbootstrap.com/)  
-[![License](https://img.shields.io/badge/License-MIT-red.svg)](LICENSE)
-
-**Repositorio**: [https://github.com/giancarlovilch/HDES.git](https://github.com/giancarlovilch/HDES.git)  
-**Estado**: En Desarrollo Activo 🚀
+👉 El objetivo es **complementar** el sistema existente, no reemplazarlo.  
 
 ---
 
@@ -16,195 +12,203 @@ Bienvenido a SB Intranet, el sistema de intranet desarrollado en Django para ges
 
 - [Introducción](#introducción)
 - [Objetivos](#objetivos)
-- [Tecnologías y Desarrollo](#tecnologías-y-desarrollo)
+- [Módulos](#módulos)
+- [Arquitectura](#arquitectura)
 - [Instalación](#instalación)
-- [Uso](#uso)
-- [Flujo de Git (Gitflow)](#flujo-de-git-gitflow)
-- [Documentación](#documentación)
+- [API y Autenticación](#api-y-autenticación)
+- [Pruebas](#pruebas)
+- [Capturas de Pantalla](#capturas-de-pantalla)
 - [Planes Futuros](#planes-futuros)
-- [Contribuciones](#contribuciones)
 - [Licencia](#licencia)
-
-[TOC]
 
 ---
 
 ## 📖 Introducción
 
-SB Intranet es una intranet modular diseñada para optimizar la gestión de una cadena de boticas. Construida con Django, permite a administradores, empleados y gerentes acceder a herramientas integradas desde un navegador. Las funcionalidades principales incluyen asignación de horarios, control de inventarios, registro de ventas y generación de reportes, con un enfoque en la autonomía y la escalabilidad.
+La intranet en Django permitirá **centralizar la gestión de la empresa** más allá de las ventas.  
+Los módulos clave son:  
 
-Este proyecto nace de la necesidad de digitalizar procesos manuales en boticas, reduciendo errores y tiempos. Es ideal para cadenas medianas que buscan una solución interna personalizable, segura y gratuita.
+- 👩‍💼 **Gestión de empleados y horarios**  
+- 📑 **Reportes individuales** (historial salarial, desempeño, asistencia)  
+- ⚖️ **Módulo legal** (contratos, acuerdos, documentos firmados)  
+- ⭐ **Skills**: asignar y evaluar habilidades de cada trabajador (ejemplo: Caja, Ventas, Almacén) con niveles representados en estrellas.  
+
+Además, el sistema se integrará con el **software PHP** existente a través de una **API** que permitirá:  
+
+1. **Login centralizado**: la autenticación seguirá ocurriendo en el sistema PHP.  
+2. **Consumo de datos de usuario vía JSON**: este intranet usará la API para mostrar el historial del trabajador.  
 
 ---
 
 ## 🎯 Objetivos
 
-- **Centralización de Datos**: Unificar información de ventas, inventarios y empleados en una plataforma web unificada.
-- **Eficiencia Operacional**: Automatizar tareas repetitivas como asignación de horarios y alertas de stock bajo.
-- **Seguridad y Acceso**: Implementar autenticación robusta con roles (admin, empleado, gerente) para proteger información sensible.
-- **Escalabilidad**: Arquitectura modular para agregar nuevas funcionalidades sin afectar el core.
-- **Interfaz Amigable**: Usar Bootstrap para una experiencia responsive y accesible en cualquier dispositivo.
-- **Ahorro de Costos**: Solución open-source, reduciendo la dependencia de sistemas externos propietarios.
+- **Complementar, no reemplazar**: trabajar junto al sistema PHP de inventario/ventas.  
+- **Unificar gestión**: horarios, reportes, contratos, habilidades.  
+- **Historial transparente**: que cada trabajador tenga un registro completo (salarios, habilidades, asistencia).  
+- **Escalabilidad**: modularidad para añadir nuevas funciones sin afectar lo existente.  
+- **Integración API**: consumir usuarios del sistema PHP con seguridad (tokens).  
 
 ---
 
-## 🔧 Tecnologías y Desarrollo
+## 🧩 Módulos
 
-- **Backend**: Django 4.2 (framework web en Python) – Maneja la lógica, modelos de datos y APIs.
-- **Frontend**: HTML5, CSS3, JavaScript con Bootstrap 5.3 – Para una UI moderna y responsiva.
-- **Base de Datos**: SQLite (desarrollo) / PostgreSQL (producción) – Almacena datos de usuarios, productos, ventas, etc.
-- **Autenticación**: Django Auth – Sistema integrado para login/registro con roles personalizados.
-- **Entorno**: Python 3.8+ en un virtualenv – Para aislamiento y manejo de dependencias.
-- **Control de Versiones**: Git con flujo Gitflow – Para desarrollo colaborativo y versiones estables.
-- **Otras Librerías**: Pillow (imágenes), django-crispy-forms (formularios), etc. (ver `requirements.txt`).
+| Módulo         | Funcionalidad                                                                 |
+|----------------|-------------------------------------------------------------------------------|
+| **Empleados**  | Alta/baja de empleados, asignación de roles, visualización de historial.      |
+| **Horarios**   | Registro y asignación de turnos semanales con control de asistencias.         |
+| **Reportes**   | Historial de salario, desempeño y métricas individuales.                      |
+| **Legal**      | Contratos laborales y documentos asociados a cada trabajador.                 |
+| **Skills**     | Asignación de habilidades: Ej. *Caja*, *Ventas*, *Almacén*, con niveles ⭐⭐⭐. |
 
-La estructura del proyecto sigue la convención estándar de Django: apps modulares (`schedule`, `inventory`, `sales`, etc.) en `sb_schedule/`, con templates globales y locales por necesidad.
+---
+
+## 🏗 Arquitectura
+
+```mermaid
+flowchart TD
+    subgraph "Sistema PHP (Existente)"
+        A[Login y API PHP] -->|JSON con usuarios| B
+    end
+
+    subgraph "Intranet Django"
+        B[API Consumer] --> C[Gestión de Empleados]
+        B --> D[Horarios]
+        B --> E[Reportes]
+        B --> F[Legal]
+        B --> G[Skills]
+    end
+
+    subgraph "Base de Datos"
+        H[(SQLite / PostgreSQL)]
+    end
+
+    C --> H
+    D --> H
+    E --> H
+    F --> H
+    G --> H
+
+```
 
 ---
 
 ## 🚀 Instalación
 
-### Prerrequisitos
-- **Python 3.8+** instalado en tu sistema.
-- **Git** para clonar el repositorio.
+### 1. Clonar repositorio
 
-### Pasos
-
-**Clona el Repositorio**:
-
-```bash
+```
 git clone https://github.com/giancarlovilch/HDES.git
 cd HDES
 ```
 
-**Configura el Entorno Virtual**:
+### 2. Crear entorno virtual
 
 ```
 python -m venv venv
-source venv/bin/activate  # En Windows: .\Scripts\activate.bat
+source venv/bin/activate   # Windows: .\venv\Scripts\activate
 ```
 
-**Instala Dependencias**:
+### 3. Instalar dependencias
 
 ```
-pip install -r requirements.txt  # Si no tienes el archivo, ejecuta pip freeze > requirements.txt después
+pip install -r requirements.txt
 ```
 
-**Configura la Base de Datos**:
+### 4. Migraciones y datos iniciales
 
 ```
-python manage.py makemigrations  # Crea migraciones para todas las apps
-python manage.py migrate  # Aplica cambios en la DB
+python manage.py migrate
+python manage.py load_initial_data
 ```
 
-**Ejecuta el Servidor**:
+### 5. Ejecutar servidor
 
 ```
 python manage.py runserver
 ```
 
-Ve a `http://127.0.0.1:8000/` en tu navegador.
+Ir a 👉 http://127.0.0.1:8000/
 
-------
+---
 
-## Uso
+## 🔑 API y Autenticación
 
-- **Acceso**: Regístrate o inicia sesión si configuraste autenticación.
-- **Navegación**: Usa el navbar para acceder a módulos (Inventario, Ventas, Horarios, etc.).
-- **Admin**: En `/admin/`, accede al panel de Django para gestionar datos avanzados.
-- **Pruebas**: Crea usuarios, productos y asientos para probar funcionalidades como asignación de horarios.
+Este intranet no gestiona el **login principal**.
+ La autenticación proviene del **sistema PHP** vía **API REST**.
 
-Ejemplo: Para gestionar inventarios, ve a `Inventario > Ver Stock` y añade productos.
+### Flujo esperado:
 
-------
+1. Usuario inicia sesión en la web PHP.
+2. PHP genera un **token** y lo expone en la API.
+3. Django consume el endpoint con ese token y obtiene el perfil del usuario.
 
-## Flujo de Git (Gitflow)
-
-Usamos el modelo Gitflow para un desarrollo organizado. Aquí el diagrama:
-
-```mermaid
-graph TD
-    A[main] -->|Version Release| Z[Fusion a main]
-    B[develop] -->|Versión Completa| A
-    C[feature/login] -->|Funcionalidad Lista| B
-    D[feature/register] -->|Funcionalidad Lista| B
-    E[hotfix/db] -->|Funcionalidad Lista| B    
-    B -->|Merge| C
-    B -->|Merge| D
-    B -->|Merge| E   
-```
+Ejemplo JSON simulado:
 
 ```
-git branch -r
- origin/HEAD -> origin/main
-  origin/develop
-  origin/feature/login
-  origin/feature/register
-  origin/hotfix/db
-  origin/main
- 
-git push origin main:develop --force
-git push origin main:feature/login --force
-git push origin main:feature/register --force
-git push origin main:hotfix/db --force
+{
+  "id": 12,
+  "username": "jlopez",
+  "nombre": "Juan Lopez",
+  "rol": "Empleado",
+  "skills": ["Caja", "Ventas"]
+}
 ```
 
-------
+⚠️ En desarrollo:
 
-### 🧩 Relación con otros branches
+- Usamos un **archivo JSON de prueba** (`/fixtures/mock_users.json`) para emular la API.
+- En producción: se reemplazará con el endpoint real en PHP.
 
-```mermaid
-gitGraph
-   commit id: "Inicio"
-   branch develop
-   commit id: "Base develop"
-   branch feature/login
-   commit id: "Login listo"
-   checkout develop
-   merge feature/login
-   branch feature/register
-   commit id: "Registro listo"
-   checkout develop
-   merge feature/register
-   checkout main
-   merge develop
-   commit id: "Release estable"
-```
+---
 
-------
+## 🧪 Pruebas
 
-### Explicación de Ramas
-
-- **main**: Rama estable. Puerta a producción. Solo merges desde `develop` o `hotfix`.
-- **develop**: Rama de integración. Todas las nuevas funcionalidades van aquí primero.
-- **feature/***: Ramas para nuevas características. Parten de `develop` y regresan ahí al terminar.
-- **hotfix/***: Ramas para correcciones urgentes. Parten de `main` y fusionan a `main` y `develop`.
-
-Comandos Básicos:
+Ejecutar pruebas:
 
 ```
-git checkout -b feature/nueva-funcionalidad  # Crear rama
-git add .
-git commit -m "Descripción"
-git push origin feature/nueva-funcionalidad
+python manage.py test
 ```
 
-------
+Pruebas iniciales incluyen:
+
+- Crear empleados y asignar skills.
+- Asignación de horarios sin duplicados.
+- Reinicio de asignaciones.
+
+---
 
 ## 📚 Documentación
 
-Para más detalles técnicos:
+La documentación extendida se encuentra en la carpeta [`docs/`](docs/):
 
-- **Guía de Usuario**: Consulta `docs/usuario.md` para tutoriales sobre cada módulo (inventarios, ventas, horarios).
-- **API/Endpoints**: Ver `docs/api.md` para listas de URLs y vistas en Django.
-- **Contribuciones**: Guía en `docs/contribuciones.md` si quieres colaborar.
-- **Modelos y Databases**: Diagrama ER en `docs/modelos.md`.
-- **Django Docs Oficial**: https://docs.djangoproject.com/ para referencias avanzadas.
-
-Si encuentras errores, abre un issue en GitHub.
+- git.md → Flujo Git y buenas prácticas.
+- develop.md → Rama de integración.
+- featurelogin.md → Módulo de login.
+- featureregister.md → Registro de usuarios.
+- hotfixdb.md → Base de datos y modelos.
 
 ------
 
+## 📸 Capturas de Pantalla
+
+- Dashboard
+- Módulo Skills
+
+---
+
+## 📅 Planes Futuros
+
+- 🔄 Conectar API PHP real con autenticación por token.
+- 🔄 Generar reportes PDF (contratos y desempeño).
+- 🔄 Integración con correo para notificaciones automáticas.
+- 🔄 Skills avanzados (niveles, certificaciones).
+
+---
+
 ## 📄 Licencia
 
-Este proyecto está bajo la Licencia MIT. Ver [LICENSE](https://openrouter.ai/LICENSE) para más detalles.
+Este proyecto está bajo licencia MIT.
+ Ver [LICENSE](LICENSE) para más detalles.
+
+---
+
