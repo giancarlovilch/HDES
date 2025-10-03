@@ -74,3 +74,45 @@ footer p, footer a {
     font-size: 1rem;
   }
 }
+
+/* Botón de logout más notorio */
+.dropdown-menu .dropdown-item.text-danger {
+  color: #dc3545;
+}
+.dropdown-menu .dropdown-item.text-danger:hover {
+  background-color: #f8d7da;
+}
+
+/* Cards con colores distintos */
+.card:nth-child(1) .card-body {
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+}
+.card:nth-child(2) .card-body {
+  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+}
+.card:nth-child(3) .card-body {
+  background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+}
+.card:nth-child(4) .card-body {
+  background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+}
+
+/* Texto dentro de cards */
+.card .card-title {
+  font-weight: 600;
+  margin-bottom: .5rem;
+}
+.card .card-text {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Responsive padding */
+@media (max-width: 768px) {
+  .card .card-text {
+    font-size: 1rem;
+  }
+  .btn-lg {
+    margin-bottom: 1rem;
+  }
+}

@@ -2,26 +2,30 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
-from django.contrib.auth import views as auth_views
-from . import views  # o mejor usar core.views si lo mueves
+from . import views   # index, php_login_form, php_logout
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),  
 
-    # Apps principales
-    path('schedule/', include('schedule.urls', namespace='schedule')),  
+    # Home / Dashboard
+    path('', views.index, name='index'),
+
+    # Auth vía PHP
+    path('login/', views.php_login_form, name='php_login_form'),
+    path('logout/', views.php_logout, name='php_logout'),
+
+    # Apps
+    path('schedule/', include('schedule.urls', namespace='schedule')),
     path('inventory/', include('inventory.urls', namespace='inventory')),
     path('sales/', include('sales.urls', namespace='sales')),
     path('employees/', include('employees.urls', namespace='employees')),
     path('reports/', include('reports.urls', namespace='reports')),
     path('suppliers/', include('suppliers.urls', namespace='suppliers')),
-    path('accounts/', include('accounts.urls', namespace='accounts')),  
-    path('legal/', include('legal.urls', namespace='legal')),  
-    path('api/', include('api.urls', namespace='api')),
+    path('accounts/', include('accounts.urls', namespace='accounts')),
+    path('legal/', include('legal.urls', namespace='legal')),
 
-    # Autenticación
-    path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'), 
+    # API
+    path('api/', include('api.urls', namespace='api')),
 ]
 
 if settings.DEBUG:

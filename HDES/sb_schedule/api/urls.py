@@ -11,5 +11,7 @@ urlpatterns = [
     path("workers/<int:worker_id>/profile/", views.worker_profile, name="worker_profile"),
     path("reports/", views.reports_list, name="reports_list"),
     path("reports/<int:pk>/", views.report_detail, name="report_detail"),
+    path("php/login/", views.php_login, name="php_login"),
+
 
 ]

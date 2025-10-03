@@ -3,6 +3,16 @@
 {% block title %}Dashboard - Intranet Cadena de Boticas{% endblock %}
 
 {% block content %}
+{% if user %}
+  <h2 class="text-start mb-3">👋 Bienvenido {{ user.username }}</h2>
+  <h1 class="mb-4">Bienvenido {{ user.nombre_completo }}</h1>
+  <p>Rol: {{ user.rol }}</p>
+  <p>Nickname: {{ user.nickname }}</p>
+{% else %}
+  <h1>Bienvenido Invitado</h1>
+  <p>Por favor inicia sesión.</p>
+{% endif %}
+
 <div class="text-center mb-5">
   <h1 class="display-4">SB INTRANET</h1>
   <p class="lead">Gestiona inventarios, ventas, empleados y más para tu cadena de boticas.</p>
