@@ -1,5 +1,9 @@
 # 🏥 HDES - Intranet de Gestión Empresarial
 
+Estudiante: Gian Carlo
+
+https://github.com/giancarlovilch/HDES
+
 Este proyecto es la **evolución de la intranet** para una cadena de boticas.  
 Mientras que el sistema existente en **PHP** gestiona **ventas e inventario**,  
 este nuevo sistema en **Django** se centra en la **gestión integral de personal**, **reportes** y **administración organizacional**.
@@ -345,8 +349,33 @@ La documentación extendida se encuentra en la carpeta [`docs/`](docs/):
 
 ## 📸 Capturas de Pantalla
 
+![image-20251002212346975](./.Images/image-20251002212346975.png)
+
 - Dashboard
-- Módulo Skills
+
+![image-20251002212405542](./.Images/image-20251002212405542.png)
+
+- Login PHP
+
+![image-20251002212433236](./.Images/image-20251002212433236.png)
+
+- Dashboad PHP
+
+![image-20251002212518141](./.Images/image-20251002212518141.png)
+
+- Login Django
+
+![image-20251002212603898](./.Images/image-20251002212603898.png)
+
+- Intranet Django
+
+![image-20251002212627417](./.Images/image-20251002212627417.png)
+
+- Responsive
+
+![image-20251002212653595](./.Images/image-20251002212653595.png)
+
+- Horarios
 
 ---
 
